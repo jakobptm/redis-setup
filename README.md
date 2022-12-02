@@ -1,6 +1,18 @@
 # Pre-requirement
 Install docker and docker-compose
 
+# How to run
+in the main directory, run
+```bash
+$ mvn clean install
+$ mvn clean compile spring-boot:run
+```
+then run redis either as container or with docker-compose 
+by following the next steps. 
+
+Lastly, u can test the application
+with e.g. Postman. (Post/Get request @ localhost:8080/taxi)
+
 # Download Redis image
 ```bash
 $ docker pull bitnami/redis:latest
@@ -12,6 +24,7 @@ $ docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:
 ```
 
 # Run Redis in docker-compose
+Go to the docker directory and run
 ```bash
 $ docker-compose -f ./docker-compose.yml up -d
 $ docker-compose logs redis
