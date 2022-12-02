@@ -1,0 +1,27 @@
+version: '3.9'
+
+#  depends_on:
+#    - redis
+
+services:
+
+  redis:
+    container_name: redis
+    image: docker.io/bitnami/redis:7.0
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_EXTRA_FLAGS=--appendonly yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL # disable FLUSHDB and FLUSHALL commands for emptying the db
+    networks:
+      - default
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+
+volumes:
+    redis_data:
+      driver: local
+
+# https://hub.docker.com/r/bitnami/redis
